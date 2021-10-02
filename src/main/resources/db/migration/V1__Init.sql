@@ -5,7 +5,7 @@ CREATE TABLE transaction (
     value NUMERIC(15, 5) NOT NULL,
     target_value NUMERIC(15, 5) NOT NULL,
     target_currency VARCHAR NOT NULL,
-    conversion_rate NUMERIC(15, 5) NOT NULL,
+    exchange_rate NUMERIC(15, 5) NOT NULL,
     timestamp TIMESTAMP NOT NULL
 );
 

@@ -18,7 +18,7 @@ class Transaction(
     var targetValue: BigDecimal,
     @Column(name = "target_currency")
     var targetCurrency: Currency,
-    @Column(name = "conversion_rate")
-    var conversionRate: BigDecimal,
+    @Column(name = "exchange_rate")
+    var exchangeRate: BigDecimal,
     var timestamp: Instant
 )
