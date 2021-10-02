@@ -64,6 +64,10 @@
             <artifactId>quarkus-flyway</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-rest-client-reactive-jackson</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
         </dependency>
@@ -170,6 +174,8 @@
                         <option>all-open:annotation=javax.enterprise.context.ApplicationScoped</option>
                         <option>all-open:annotation=io.quarkus.test.junit.QuarkusTest</option>
                         <option>all-open:annotation=javax.persistence.Entity</option>
+                        <option>all-open:annotation=dev.ricardovm.infra.DTO</option>
+                        <option>no-arg:annotation=dev.ricardovm.infra.DTO</option>
                         <option>no-arg:annotation=javax.persistence.Entity</option>
                     </pluginOptions>
                 </configuration>
