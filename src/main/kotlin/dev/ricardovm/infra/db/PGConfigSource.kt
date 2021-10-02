@@ -16,11 +16,11 @@ class PGConfigSource : ConfigSource {
                 db = EmbeddedPostgres.start().also {
                     val dbUser = "postgres"
                     val dbPass = "postgres"
-                    val url = it.getJdbcUrl(dbUser, dbPass)
+                    val reactiveUrl = "postgresql://localhost:${it.port}/postgres"
 
                     props["quarkus.datasource.username"] = dbUser
                     props["quarkus.datasource.password"] = dbPass
-                    props["quarkus.datasource.jdbc.url"] = url
+                    props["quarkus.datasource.reactive.url"] = reactiveUrl
                 }
             }
         }
