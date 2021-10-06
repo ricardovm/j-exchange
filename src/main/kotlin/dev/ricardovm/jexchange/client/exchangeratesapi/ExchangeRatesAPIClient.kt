@@ -7,13 +7,14 @@ import javax.ws.rs.Path
 import javax.ws.rs.QueryParam
 
 
-@Path("v1")
+@Path("")
 @RegisterRestClient(configKey = "exchange-rates-api")
 interface ExchangeRatesAPIClient {
 
     @GET
     @Path("latest")
     fun getRates(
+        @QueryParam("base") base: String,
         @QueryParam("access_key") accessKey: String
     ): Uni<RatesResponse>
 }

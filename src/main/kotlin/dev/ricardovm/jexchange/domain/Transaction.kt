@@ -7,7 +7,7 @@ import javax.persistence.*
 @Entity
 class Transaction(
     @Id
-    var id: Long?,
+    var id: Long? = null,
     @Column(name="user_id")
     var userId: String,
     @Enumerated(EnumType.STRING)
@@ -19,5 +19,5 @@ class Transaction(
     var targetCurrency: Currency,
     @Column(name = "exchange_rate")
     var exchangeRate: BigDecimal,
-    var timestamp: Instant
+    var timestamp: Instant = Instant.now()
 )
