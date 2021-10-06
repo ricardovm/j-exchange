@@ -1,4 +1,4 @@
-package dev.ricardovm.infra.db
+package dev.ricardovm.jexchange.infra.db
 
 import io.quarkus.runtime.StartupEvent
 import org.eclipse.microprofile.config.inject.ConfigProperty

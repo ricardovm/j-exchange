@@ -1,4 +1,4 @@
-package dev.ricardovm.infra.db
+package dev.ricardovm.jexchange.infra.db
 
 import io.zonky.test.db.postgres.embedded.EmbeddedPostgres
 import org.eclipse.microprofile.config.spi.ConfigSource

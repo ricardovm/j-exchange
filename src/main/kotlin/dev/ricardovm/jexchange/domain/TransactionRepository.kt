@@ -1,4 +1,4 @@
-package dev.ricardovm.domain
+package dev.ricardovm.jexchange.domain
 
 import io.quarkus.hibernate.reactive.panache.PanacheRepository
 import javax.enterprise.context.ApplicationScoped

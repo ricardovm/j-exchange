@@ -1,4 +1,4 @@
-package dev.ricardovm.domain
+package dev.ricardovm.jexchange.domain
 
 import java.math.BigDecimal
 import java.time.Instant

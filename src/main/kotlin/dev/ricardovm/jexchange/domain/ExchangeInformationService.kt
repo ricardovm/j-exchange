@@ -1,4 +1,4 @@
-package dev.ricardovm.domain
+package dev.ricardovm.jexchange.domain
 
 import io.smallrye.mutiny.Uni
 import java.math.BigDecimal

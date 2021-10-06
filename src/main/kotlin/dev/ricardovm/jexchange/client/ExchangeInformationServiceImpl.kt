@@ -1,7 +1,7 @@
-package dev.ricardovm.client
+package dev.ricardovm.jexchange.client
 
-import dev.ricardovm.client.exchangeratesapi.ExchangeRatesAPIClient
-import dev.ricardovm.domain.ExchangeInformationService
+import dev.ricardovm.jexchange.client.exchangeratesapi.ExchangeRatesAPIClient
+import dev.ricardovm.jexchange.domain.ExchangeInformationService
 import io.smallrye.mutiny.Uni
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.eclipse.microprofile.rest.client.inject.RestClient

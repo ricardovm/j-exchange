@@ -1,6 +1,6 @@
-package dev.ricardovm.client.exchangeratesapi
+package dev.ricardovm.jexchange.client.exchangeratesapi
 
-import dev.ricardovm.infra.DTO
+import dev.ricardovm.jexchange.infra.DTO
 import java.math.BigDecimal
 import java.time.LocalDate
 

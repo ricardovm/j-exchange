@@ -174,8 +174,8 @@
                         <option>all-open:annotation=javax.enterprise.context.ApplicationScoped</option>
                         <option>all-open:annotation=io.quarkus.test.junit.QuarkusTest</option>
                         <option>all-open:annotation=javax.persistence.Entity</option>
-                        <option>all-open:annotation=dev.ricardovm.infra.DTO</option>
-                        <option>no-arg:annotation=dev.ricardovm.infra.DTO</option>
+                        <option>all-open:annotation=dev.ricardovm.jexchange.infra.DTO</option>
+                        <option>no-arg:annotation=dev.ricardovm.jexchange.infra.DTO</option>
                         <option>no-arg:annotation=javax.persistence.Entity</option>
                     </pluginOptions>
                 </configuration>

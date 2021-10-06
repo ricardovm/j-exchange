@@ -1,4 +1,4 @@
-package dev.ricardovm.client.exchangeratesapi
+package dev.ricardovm.jexchange.client.exchangeratesapi
 
 import io.smallrye.mutiny.Uni
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient
