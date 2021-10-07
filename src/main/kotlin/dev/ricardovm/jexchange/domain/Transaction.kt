@@ -17,6 +17,7 @@ class Transaction(
     var baseCurrency: Currency,
     var amount: BigDecimal,
     var result: BigDecimal,
+    @Enumerated(EnumType.STRING)
     @Column(name = "target_currency")
     var targetCurrency: Currency,
     @Column(name = "exchange_rate")

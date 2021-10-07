@@ -1,5 +1,6 @@
 package dev.ricardovm.jexchange.domain
 
+import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional
 import io.smallrye.mutiny.Uni
 import org.jboss.logging.Logger
 import java.math.BigDecimal
@@ -17,7 +18,7 @@ class ExchangeService(
         private val LOG: Logger = Logger.getLogger(ExchangeService::class.java)
     }
 
-    @Transactional
+    @ReactiveTransactional
     fun convert(
         amount: BigDecimal,
         baseCurrency: Currency,
