@@ -6,7 +6,6 @@ import org.jboss.logging.Logger
 import java.math.BigDecimal
 import java.math.RoundingMode
 import javax.enterprise.context.ApplicationScoped
-import javax.transaction.Transactional
 
 @ApplicationScoped
 class ExchangeService(
@@ -58,12 +57,24 @@ class ExchangeService(
             exchangeRate = result.divide(amount)
         )
 
-        return transactionRepository.persist(transaction)
+        return transactionRepository.persistAndFlush(transaction)
+            .onFailure().transform { e ->
+                JExchangeException(
+                    userMessage = "Failed to persist this transaction. Please, try again later.",
+                    cause = e
+                )
+            }
     }
 
     fun findTransactionsByUserId(userId: String): Uni<List<Transaction>> {
         LOG.infov("Listing all transactions of user {0}", userId)
 
         return transactionRepository.findByUserId(userId)
+            .onFailure().transform { e ->
+                JExchangeException(
+                    userMessage = "Failed to load user's transactions. Please, try again later.",
+                    cause = e
+                )
+            }
     }
 }
