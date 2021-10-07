@@ -73,6 +73,9 @@ e o próprio framework ajuda a evitar códigos de IO com bloqueio.
 Kotlin também é uma excelente escolha como linguagem para rodar na JVM, bastante concisa
 e poderosa.
 
+Além disso, um PostgreSQL embedded está incluído na aplicação para aproveitar o driver
+reativo do mesmo.
+
 ## Camadas
 
 O código é dividido em 3 camadas principais além de uma camada de suporte: 
