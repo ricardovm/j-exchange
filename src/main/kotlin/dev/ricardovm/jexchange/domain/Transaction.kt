@@ -5,8 +5,10 @@ import java.time.Instant
 import javax.persistence.*
 
 @Entity
+@SequenceGenerator(name = "transaction_seq", sequenceName = "transaction_seq")
 class Transaction(
     @Id
+    @GeneratedValue(generator = "transaction_seq")
     var id: Long? = null,
     @Column(name="user_id")
     var userId: String,

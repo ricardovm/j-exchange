@@ -5,6 +5,7 @@ import org.jboss.logging.Logger
 import java.math.BigDecimal
 import java.math.RoundingMode
 import javax.enterprise.context.ApplicationScoped
+import javax.transaction.Transactional
 
 @ApplicationScoped
 class ExchangeService(
@@ -16,6 +17,7 @@ class ExchangeService(
         private val LOG: Logger = Logger.getLogger(ExchangeService::class.java)
     }
 
+    @Transactional
     fun convert(
         amount: BigDecimal,
         baseCurrency: Currency,
