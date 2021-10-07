@@ -12,6 +12,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag
 import java.math.BigDecimal
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
+import javax.ws.rs.BadRequestException
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.QueryParam
@@ -46,10 +47,17 @@ class ExchangeResource(
         @QueryParam("userId") userId: String
     ): Uni<TransactionDTO> {
         return exchangeService.convert(
-            baseCurrency = Currency.valueOf(baseCurrency),
-            targetCurrency = Currency.valueOf(targetCurrency),
+            baseCurrency = getCurrency(baseCurrency),
+            targetCurrency = getCurrency(targetCurrency),
             amount = amount,
             userId = userId
         ).map { it.toDTO() }
     }
+
+    private fun getCurrency(currency: String): Currency =
+        try {
+            Currency.valueOf(currency)
+        } catch (e: Exception) {
+            throw BadRequestException("Invalid currency: $currency")
+        }
 }
