@@ -57,7 +57,7 @@ class ExchangeService(
             exchangeRate = result.divide(amount)
         )
 
-        return transactionRepository.persistAndFlush(transaction)
+        return transactionRepository.persist(transaction)
             .onFailure().transform { e ->
                 JExchangeException(
                     userMessage = "Failed to persist this transaction. Please, try again later.",
