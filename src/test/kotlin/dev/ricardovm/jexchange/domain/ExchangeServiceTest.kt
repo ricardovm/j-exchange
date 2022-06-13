@@ -1,38 +1,34 @@
 package dev.ricardovm.jexchange.domain
 
 import dev.ricardovm.jexchange.defaultRates
-import io.mockk.MockKAnnotations
 import io.mockk.every
-import io.mockk.impl.annotations.MockK
-import io.mockk.junit5.MockKExtension
 import io.mockk.slot
 import io.mockk.verify
+import io.quarkiverse.test.junit.mockk.InjectMock
+import io.quarkus.test.junit.QuarkusTest
 import io.smallrye.mutiny.Uni
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.aggregator.ArgumentsAccessor
 import org.junit.jupiter.params.provider.CsvFileSource
 import java.math.BigDecimal
 import java.math.RoundingMode
 
-@ExtendWith(MockKExtension::class)
+@QuarkusTest
 class ExchangeServiceTest {
 
     lateinit var instance: ExchangeService
 
-    @MockK
+    @InjectMock
     lateinit var transactionRepository: TransactionRepository
 
-    @MockK
+    @InjectMock
     lateinit var exchangeInformationService: ExchangeInformationService
 
     @BeforeEach
     fun setUp() {
-        MockKAnnotations.init(this, relaxUnitFun = true)
-
         this.instance = ExchangeService(
             transactionRepository = this.transactionRepository,
             exchangeInformationService = exchangeInformationService

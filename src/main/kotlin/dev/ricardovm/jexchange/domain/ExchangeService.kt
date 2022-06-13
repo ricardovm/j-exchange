@@ -1,21 +1,18 @@
 package dev.ricardovm.jexchange.domain
 
 import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional
+import io.quarkus.logging.Log
 import io.smallrye.mutiny.Uni
-import org.jboss.logging.Logger
 import java.math.BigDecimal
 import java.math.RoundingMode
 import javax.enterprise.context.ApplicationScoped
+import javax.inject.Inject
 
 @ApplicationScoped
-class ExchangeService(
+class ExchangeService @Inject constructor(
     val transactionRepository: TransactionRepository,
     val exchangeInformationService: ExchangeInformationService
 ) {
-
-    companion object {
-        private val LOG: Logger = Logger.getLogger(ExchangeService::class.java)
-    }
 
     @ReactiveTransactional
     fun convert(
@@ -24,7 +21,7 @@ class ExchangeService(
         targetCurrency: Currency,
         userId: String
     ): Uni<Transaction> {
-        LOG.infov("Converting {0} {1} to {2} (userId: {3})", amount, baseCurrency, targetCurrency, userId)
+        Log.infov("Converting {0} {1} to {2} (userId: {3})", amount, baseCurrency, targetCurrency, userId)
 
         return exchangeInformationService.getRates()
             .map { rates -> convert(amount, baseCurrency, targetCurrency, rates) }
@@ -67,7 +64,7 @@ class ExchangeService(
     }
 
     fun findTransactionsByUserId(userId: String): Uni<List<Transaction>> {
-        LOG.infov("Listing all transactions of user {0}", userId)
+        Log.infov("Listing all transactions of user {0}", userId)
 
         return transactionRepository.findByUserId(userId)
             .onFailure().transform { e ->

@@ -7,6 +7,7 @@ import org.eclipse.microprofile.openapi.annotations.enums.SchemaType
 import org.eclipse.microprofile.openapi.annotations.media.Content
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse
 import org.eclipse.microprofile.openapi.annotations.tags.Tag
+import javax.inject.Inject
 import javax.validation.constraints.NotBlank
 import javax.ws.rs.GET
 import javax.ws.rs.Path
@@ -15,7 +16,7 @@ import javax.ws.rs.core.MediaType
 
 @Path("transactions")
 @Tag(name = "Transactions Resource", description = "Endpoit to query transactions")
-class TransactionsResource(
+class TransactionsResource @Inject constructor(
     val exchangeService: ExchangeService
 ) {
 

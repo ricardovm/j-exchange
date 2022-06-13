@@ -10,6 +10,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse
 import org.eclipse.microprofile.openapi.annotations.tags.Tag
 import java.math.BigDecimal
+import javax.inject.Inject
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
 import javax.ws.rs.BadRequestException
@@ -20,7 +21,7 @@ import javax.ws.rs.core.MediaType
 
 @Path("exchange")
 @Tag(name = "Exchange Resource", description = "Exchange and conversion related operations")
-class ExchangeResource(
+class ExchangeResource @Inject constructor(
     val exchangeService: ExchangeService
 ) {
 

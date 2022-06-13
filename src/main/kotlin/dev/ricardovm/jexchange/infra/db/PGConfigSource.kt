@@ -1,27 +1,29 @@
 package dev.ricardovm.jexchange.infra.db
 
-import io.zonky.test.db.postgres.embedded.EmbeddedPostgres
 import org.eclipse.microprofile.config.spi.ConfigSource
+import org.testcontainers.containers.PostgreSQLContainer
 
 class PGConfigSource : ConfigSource {
 
     companion object {
         @JvmStatic
-        var db: EmbeddedPostgres? = null
+        val postgreSQLContainer: PostgreSQLContainer<*> = PostgreSQLContainer<Nothing>("postgres:14")
+            .apply {
+                withDatabaseName("postgres")
+                withUsername("postgres")
+                withPassword("postgres")
+                start()
+            }
 
         var props: MutableMap<String, String> = HashMap()
 
         fun load() {
-            if (db == null) {
-                db = EmbeddedPostgres.start().also {
-                    val dbUser = "postgres"
-                    val dbPass = "postgres"
-                    val reactiveUrl = "postgresql://localhost:${it.port}/postgres"
+            if (props.isEmpty()) {
+                val reactiveUrl = "postgresql://localhost:${postgreSQLContainer.firstMappedPort}/postgres"
 
-                    props["quarkus.datasource.username"] = dbUser
-                    props["quarkus.datasource.password"] = dbPass
-                    props["quarkus.datasource.reactive.url"] = reactiveUrl
-                }
+                props["quarkus.datasource.username"] = postgreSQLContainer.username
+                props["quarkus.datasource.password"] = postgreSQLContainer.password
+                props["quarkus.datasource.reactive.url"] = reactiveUrl
             }
         }
     }
