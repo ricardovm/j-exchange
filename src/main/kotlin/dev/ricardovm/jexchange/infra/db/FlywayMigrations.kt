@@ -17,8 +17,10 @@ class FlywayMigrations(
 ) {
 
     fun runFlywayMigration(@Observes event: StartupEvent) {
+        val jdbcUrl = "jdbc:" + datasourceUrl.replace("vertx-reactive:", "")
         val flyway = Flyway.configure()
-            .dataSource("jdbc:$datasourceUrl", datasourceUsername, datasourcePassword)
+            .baselineOnMigrate(true)
+            .dataSource(jdbcUrl, datasourceUsername, datasourcePassword)
             .load()
 
         flyway.migrate()
